@@ -4,27 +4,10 @@ import { motion } from 'framer-motion'
 import { MapPin, Phone, ArrowRight, Trophy, Users, ShieldCheck, MessageCircle, BookOpen, Dumbbell } from 'lucide-react'
 import anime from 'animejs'
 
+const BG_VIDEO_SRC = '/videos/coverr-temp-8i3tgen-3-alpha-2290351142-a-title-screen-with-nuzu9694acolorful-mp4-7090-1080p.mp4'
+
 const WHATSAPP_URL =
   "https://wa.me/919869911317?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Asmita's%20Samast%20Shikshan%20programs."
-
-function useScrollReveal(className = '.reveal') {
-  useEffect(() => {
-    const els = document.querySelectorAll(className)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('revealed')
-            observer.unobserve(e.target)
-          }
-        })
-      },
-      { threshold: 0.12 }
-    )
-    els.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-}
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -33,45 +16,34 @@ const fadeUp = {
   transition: { duration: 0.55, ease: 'easeOut' },
 }
 
-const stagger = {
-  initial: {},
-  whileInView: {},
-  viewport: { once: true },
-}
-
 export default function Home() {
   const heroHeadRef = useRef(null)
-  const heroImgRef = useRef(null)
+  const videoRef = useRef(null)
 
+  // Word-by-word heading animation
   useEffect(() => {
-    // Anime.js entrance for hero heading words
     if (heroHeadRef.current) {
       const text = heroHeadRef.current.innerText
       heroHeadRef.current.innerHTML = text
         .split(' ')
-        .map((w) => `<span class="word-wrap" style="display:inline-block;overflow:hidden;"><span class="word" style="display:inline-block;transform:translateY(100%)">${w}</span></span>`)
+        .map((w) => `<span style="display:inline-block;overflow:hidden;"><span style="display:inline-block;transform:translateY(100%)">${w}</span></span>`)
         .join(' ')
 
       anime({
-        targets: heroHeadRef.current.querySelectorAll('.word'),
+        targets: heroHeadRef.current.querySelectorAll('span > span'),
         translateY: ['100%', '0%'],
         opacity: [0, 1],
         duration: 800,
-        delay: anime.stagger(80, { start: 200 }),
+        delay: anime.stagger(80, { start: 300 }),
         easing: 'easeOutExpo',
       })
     }
+  }, [])
 
-    // Anime.js subtle image float
-    if (heroImgRef.current) {
-      anime({
-        targets: heroImgRef.current,
-        translateY: [20, 0],
-        opacity: [0, 1],
-        duration: 900,
-        delay: 400,
-        easing: 'easeOutExpo',
-      })
+  // Ensure video plays (handles browser autoplay policy)
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
     }
   }, [])
 
@@ -79,81 +51,111 @@ export default function Home() {
     <main>
       {/* ─── HERO ─── */}
       <section
-        className="relative min-h-screen flex items-center"
+        className="relative min-h-screen flex items-center overflow-hidden"
         style={{ backgroundColor: '#0F172A', paddingTop: '5rem' }}
         aria-label="Hero section"
       >
-        <div className="container-custom w-full py-16 md:py-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center min-h-[80vh]">
-            {/* Text */}
-            <div className="order-2 lg:order-1">
-              <div className="badge badge-gold mb-6">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"
-                />
-                Admissions Open for New Session
-              </div>
+        {/* ── Looping background video ── */}
+        <video
+          ref={videoRef}
+          src={BG_VIDEO_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        />
 
-              <h1
-                ref={heroHeadRef}
-                className="text-white mb-5"
-                style={{ fontSize: 'clamp(2rem, 5vw, 3.6rem)', lineHeight: '1.08', fontWeight: 800 }}
-              >
-                Unleash the Power of Focus &amp; Excellence in Your Child.
-              </h1>
+        {/* ── Dark gradient overlay — keeps text readable ── */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1,
+            background:
+              'linear-gradient(135deg, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.60) 60%, rgba(15,23,42,0.40) 100%)',
+          }}
+        />
 
-              <p className="text-white/65 mb-8 max-w-md" style={{ fontSize: '1.05rem', lineHeight: '1.8' }}>
-                Academic tuition for Grades 1st–10th alongside Zumba fitness programs designed for women.
-              </p>
+        {/* ── Hero content ── */}
+        <div className="container-custom w-full py-24 relative" style={{ zIndex: 2 }}>
+          <div className="max-w-2xl">
 
-              <div className="flex flex-wrap items-center gap-3 mb-8">
-                <Link to="/tuition" className="btn-primary">
-                  Explore Tuition <ArrowRight size={16} />
-                </Link>
-                <Link to="/zumba" className="btn-outline-white">
-                  Explore Zumba
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-2 text-white/45 text-sm">
-                <MapPin size={14} className="text-amber-400" />
-                <span>Powai, Mumbai</span>
-              </div>
+            {/* Admissions badge */}
+            <div className="badge badge-gold mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              Admissions Open for New Session
             </div>
 
-            {/* Images */}
-            <div className="order-1 lg:order-2 relative" ref={heroImgRef}>
-              <div className="grid grid-cols-12 grid-rows-3 gap-3" style={{ height: 'clamp(340px, 50vw, 520px)' }}>
-                {/* Main large image */}
-                <div className="col-span-8 row-span-3 rounded-xl overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80"
-                    alt="Students studying in a well-lit classroom environment"
-                    className="img-cover"
-                    loading="eager"
-                  />
-                </div>
-                {/* Top small */}
-                <div className="col-span-4 row-span-1 rounded-xl overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&q=80"
-                    alt="Teacher helping a student with studies"
-                    className="img-cover"
-                    loading="eager"
-                  />
-                </div>
-                {/* Middle small */}
-                <div className="col-span-4 row-span-2 rounded-xl overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80"
-                    alt="Women participating in a Zumba fitness class"
-                    className="img-cover"
-                    loading="eager"
-                  />
-                </div>
-              </div>
+            <h1
+              ref={heroHeadRef}
+              className="text-white mb-6"
+              style={{ fontSize: 'clamp(2.2rem, 5.5vw, 4rem)', lineHeight: '1.1', fontWeight: 800 }}
+            >
+              Unleash the Power of Focus &amp; Excellence in Your Child.
+            </h1>
+
+            <p
+              className="text-white/75 mb-10 max-w-lg"
+              style={{ fontSize: '1.1rem', lineHeight: '1.85' }}
+            >
+              Academic tuition for Grades 1st–10th alongside Zumba fitness programs designed for women — all in Powai.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4 mb-10">
+              <Link to="/tuition" className="btn-primary" id="hero-btn-tuition">
+                Explore Tuition <ArrowRight size={16} />
+              </Link>
+              <Link to="/zumba" className="btn-outline-white" id="hero-btn-zumba">
+                Explore Zumba
+              </Link>
             </div>
+
+            {/* Location */}
+            <div className="flex items-center gap-2 text-white/45 text-sm">
+              <MapPin size={14} className="text-amber-400" />
+              <span>302 Samoa Building, Pacific Enclave, Powai, Mumbai</span>
+            </div>
+
           </div>
+        </div>
+
+        {/* ── Scroll cue ── */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '2rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.4rem',
+            opacity: 0.5,
+          }}
+        >
+          <span style={{ color: '#fff', fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+            Scroll
+          </span>
+          <div
+            style={{
+              width: 1,
+              height: '2.5rem',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,0.8), transparent)',
+              animation: 'scrollPulse 1.8s ease-in-out infinite',
+            }}
+          />
         </div>
       </section>
 

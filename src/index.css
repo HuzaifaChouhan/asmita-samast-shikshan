@@ -378,3 +378,11 @@ textarea.form-input {
   background-color: #0F172A;
   color: #D97706;
 }
+
+/* =============================================
+   HERO SCROLL CUE ANIMATION
+   ============================================= */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.6; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.5); }
+}
