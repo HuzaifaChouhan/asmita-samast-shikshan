@@ -116,7 +116,7 @@ export default function Footer() {
                 <p className="text-white/40 text-xs mt-1">1st – 10th Class</p>
               </li>
               <li>
-                <p className="text-white/40 text-xs">MSC · CBSE · IC · ICSE</p>
+                <p className="text-white/40 text-xs">HSC · CBSE · IC · ICSE</p>
               </li>
               <li className="mt-3">
                 <Link

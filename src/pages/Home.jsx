@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { MapPin, Phone, ArrowRight, Trophy, Users, ShieldCheck, MessageCircle, BookOpen, Dumbbell } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { MapPin, Phone, ArrowRight, Trophy, Users, ShieldCheck, MessageCircle, BookOpen, Dumbbell, GraduationCap, Monitor } from 'lucide-react'
 import anime from 'animejs'
 
 const BG_VIDEO_SRC = '/videos/coverr-temp-8i3tgen-3-alpha-2290351142-a-title-screen-with-nuzu9694acolorful-mp4-7090-1080p.mp4'
@@ -43,7 +43,7 @@ export default function Home() {
   // Ensure video plays (handles browser autoplay policy)
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {})
+      videoRef.current.play().catch(() => { })
     }
   }, [])
 
@@ -108,7 +108,7 @@ export default function Home() {
               className="text-white/75 mb-10 max-w-lg"
               style={{ fontSize: '1.1rem', lineHeight: '1.85' }}
             >
-              Academic tuition for Grades 1st–10th alongside Zumba fitness programs designed for women — all in Powai.
+              Academic tuition for 1st–12th standard — including 11th &amp; 12th across Science, Commerce, and Arts — alongside Zumba fitness programs for women. Available offline and online.
             </p>
 
             {/* CTA Buttons */}
@@ -199,7 +199,7 @@ export default function Home() {
               <div className="relative p-8 md:p-10 h-full flex flex-col justify-between" style={{ minHeight: '400px' }}>
                 <div>
                   <div className="flex items-center gap-2 mb-6">
-                    <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>MSC</span>
+                    <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>HSC</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>CBSE</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>IC</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>ICSE</span>
@@ -210,9 +210,10 @@ export default function Home() {
                   >
                     Asmita Tuition Classes
                   </h3>
-                  <p className="text-amber-400 font-semibold mb-4 text-sm tracking-wide uppercase">
-                    1st to 10th Class — All Subjects
+                  <p className="text-amber-400 font-semibold mb-1 text-sm tracking-wide uppercase">
+                    1st to 12th Standard
                   </p>
+                  <p className="text-white/45 text-xs mb-4">Science · Commerce · Arts for 11th &amp; 12th · Offline &amp; Online</p>
                   <ul className="flex flex-col gap-2 mb-8">
                     {['Concept-Based Learning', 'Small Batches', 'Personalized Attention', 'Regular Assessments'].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-white/70 text-sm">
@@ -250,8 +251,18 @@ export default function Home() {
               </div>
               <div className="relative p-8 md:p-10 h-full flex flex-col justify-between" style={{ minHeight: '400px' }}>
                 <div>
-                  <div className="badge badge-white mb-6">
-                    Special Ladies Batch
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="badge badge-white">Special Ladies Batch</div>
+                    <div
+                      className="badge"
+                      style={{
+                        backgroundColor: 'rgba(255,255,255,0.1)',
+                        color: 'rgba(255,255,255,0.75)',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                      }}
+                    >
+                      Offline &amp; Online
+                    </div>
                   </div>
                   <h3
                     className="font-extrabold text-white mb-3"
@@ -284,6 +295,178 @@ export default function Home() {
                 </Link>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── ACADEMIC EXPANSION SECTION ─── */}
+      <section
+        className="section-padding"
+        style={{ backgroundColor: '#0F172A' }}
+        aria-labelledby="academic-expansion-heading"
+      >
+        <div className="container-custom">
+          <motion.div {...fadeUp} className="mb-14">
+            <div className="gold-line mb-4" />
+            <h2
+              id="academic-expansion-heading"
+              className="font-extrabold text-white"
+              style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)' }}
+            >
+              From School Years to Senior Secondary
+            </h2>
+            <p className="text-white/50 mt-3 max-w-lg" style={{ fontSize: '1rem' }}>
+              A complete academic pathway — from 1st standard through 12th, with support at every stage.
+              Available offline and online.
+            </p>
+          </motion.div>
+
+          {/* Two-column layout: progression + online badge */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+            {/* Left: Progression */}
+            <div className="flex flex-col gap-0">
+              {[
+                { range: '1st – 5th', label: 'Primary', delay: 0 },
+                { range: '6th – 8th', label: 'Middle School', delay: 0.08 },
+                { range: '9th – 10th', label: 'Secondary', delay: 0.16 },
+                { range: '11th – 12th', label: 'Arts · Commerce · Science', delay: 0.24, highlight: true },
+              ].map((step, i, arr) => (
+                <motion.div
+                  key={step.range}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.45, delay: step.delay }}
+                  className="flex items-stretch gap-5"
+                >
+                  {/* Timeline */}
+                  <div className="flex flex-col items-center">
+                    <div
+                      className="w-3 h-3 rounded-full shrink-0 mt-1.5"
+                      style={{ backgroundColor: step.highlight ? '#F59E0B' : 'rgba(255,255,255,0.25)' }}
+                    />
+                    {i < arr.length - 1 && (
+                      <div
+                        className="flex-1 w-px my-1"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.08)', minHeight: '2rem' }}
+                      />
+                    )}
+                  </div>
+                  {/* Content */}
+                  <div
+                    className="pb-6"
+                    style={{
+                      paddingLeft: '0.25rem',
+                      borderLeft: step.highlight ? '1px solid rgba(245,158,11,0.2)' : 'none',
+                      paddingLeft: step.highlight ? '0.75rem' : '0',
+                    }}
+                  >
+                    <p
+                      className="font-extrabold"
+                      style={{
+                        color: step.highlight ? '#F59E0B' : 'rgba(255,255,255,0.85)',
+                        fontSize: '1.05rem',
+                        letterSpacing: '-0.01em',
+                      }}
+                    >
+                      {step.range}
+                    </p>
+                    <p
+                      className="text-xs mt-0.5"
+                      style={{ color: step.highlight ? 'rgba(245,158,11,0.65)' : 'rgba(255,255,255,0.35)' }}
+                    >
+                      {step.label}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Right: Cards */}
+            <div className="flex flex-col gap-4">
+              {/* School Tuition card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: 0.1 }}
+                className="rounded-xl p-6"
+                style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: 'rgba(217,119,6,0.15)' }}
+                  >
+                    <BookOpen size={18} className="text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm">School Tuition</p>
+                    <p className="text-white/40 text-xs">1st to 10th Standard</p>
+                  </div>
+                </div>
+                <p className="text-white/50 text-sm leading-relaxed">
+                  Comprehensive academic support for all grades and subjects — concept-based learning with personal attention.
+                </p>
+                <Link to="/tuition" className="inline-flex items-center gap-1.5 text-amber-400 text-sm font-semibold mt-4">
+                  Learn More <ArrowRight size={13} />
+                </Link>
+              </motion.div>
+
+              {/* Senior Secondary card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: 0.2 }}
+                className="rounded-xl p-6"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(217,119,6,0.12) 0%, rgba(217,119,6,0.04) 100%)',
+                  border: '1px solid rgba(217,119,6,0.25)',
+                }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: 'rgba(217,119,6,0.2)' }}
+                  >
+                    <GraduationCap size={18} className="text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm">Senior Secondary</p>
+                    <p className="text-amber-400/70 text-xs">11th &amp; 12th Standard — New</p>
+                  </div>
+                </div>
+                <p className="text-white/50 text-sm leading-relaxed">
+                  Arts, Commerce, and Science — academic support for 11th and 12th students preparing for their future.
+                </p>
+                <Link to="/tuition/senior-secondary" className="inline-flex items-center gap-1.5 text-amber-400 text-sm font-semibold mt-4">
+                  Explore Streams <ArrowRight size={13} />
+                </Link>
+              </motion.div>
+
+              {/* Online classes note */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: 0.3 }}
+                className="rounded-xl p-5 flex items-center gap-4"
+                style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+              >
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+                >
+                  <Monitor size={17} className="text-white/60" />
+                </div>
+                <div>
+                  <p className="text-white/75 font-semibold text-sm">Online &amp; Offline Learning</p>
+                  <p className="text-white/35 text-xs mt-0.5">Learn from wherever you are — academic support accessible beyond the classroom.</p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

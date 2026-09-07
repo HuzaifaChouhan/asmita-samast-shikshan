@@ -6,6 +6,7 @@ import WhatsAppButton from './components/WhatsAppButton'
 import PageTransition from './components/PageTransition'
 import Home from './pages/Home'
 import Tuition from './pages/Tuition'
+import SeniorSecondary from './pages/SeniorSecondary'
 import Zumba from './pages/Zumba'
 import Admissions from './pages/Admissions'
 import About from './pages/About'
@@ -31,6 +32,7 @@ function AppContent() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/tuition" element={<Tuition />} />
+          <Route path="/tuition/senior-secondary" element={<SeniorSecondary />} />
           <Route path="/zumba" element={<Zumba />} />
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/about" element={<About />} />

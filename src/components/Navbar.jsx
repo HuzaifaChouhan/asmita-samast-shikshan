@@ -1,11 +1,33 @@
-import { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom'
+import { Menu, X, ChevronDown, BookOpen, GraduationCap, Monitor } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const navLinks = [
-  { to: '/', label: 'Home', exact: true },
-  { to: '/tuition', label: 'Tuition' },
+const WHATSAPP_URL =
+  "https://wa.me/919869911317?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Asmita's%20Samast%20Shikshan%20programs."
+
+const tuitionItems = [
+  {
+    to: '/tuition',
+    label: 'School Tuition',
+    sub: '1st–10th · All Subjects',
+    icon: <BookOpen size={15} />,
+  },
+  {
+    to: '/tuition/senior-secondary',
+    label: 'Senior Secondary',
+    sub: '11th–12th · Science, Commerce, Arts',
+    icon: <GraduationCap size={15} />,
+  },
+  {
+    to: '/tuition#online',
+    label: 'Online Classes',
+    sub: 'Learn from anywhere',
+    icon: <Monitor size={15} />,
+  },
+]
+
+const otherLinks = [
   { to: '/zumba', label: 'Zumba' },
   { to: '/admissions', label: 'Admissions' },
   { to: '/about', label: 'About' },
@@ -16,6 +38,10 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [tuitionOpen, setTuitionOpen] = useState(false)
+  const [mobileAcadOpen, setMobileAcadOpen] = useState(false)
+  const dropdownRef = useRef(null)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -23,7 +49,31 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const closeMenu = () => setMenuOpen(false)
+  // Close dropdown on route change
+  useEffect(() => {
+    setTuitionOpen(false)
+    setMenuOpen(false)
+  }, [location.pathname])
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setTuitionOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  const closeMenu = () => {
+    setMenuOpen(false)
+    setTuitionOpen(false)
+  }
+
+  const isTuitionActive =
+    location.pathname === '/tuition' ||
+    location.pathname.startsWith('/tuition/')
 
   return (
     <header
@@ -32,25 +82,18 @@ export default function Navbar() {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
-          {/* Brand */}
+          {/* Brand Logo */}
           <Link
             to="/"
             onClick={closeMenu}
-            className="flex flex-col leading-tight group"
+            className="flex items-center group"
             aria-label="Asmita's Samast Shikshan — Home"
           >
-            <span
-              className="font-extrabold text-white tracking-tight"
-              style={{ fontSize: '1.05rem', letterSpacing: '-0.01em' }}
-            >
-              Asmita's Samast Shikshan
-            </span>
-            <span
-              className="font-medium text-amber-400"
-              style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
-            >
-              Education for Growth
-            </span>
+            <img
+              src="/logo.jpg"
+              alt="Asmita's Samast Shikshan Logo"
+              className="h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -58,22 +101,77 @@ export default function Navbar() {
             className="hidden lg:flex items-center gap-1"
             aria-label="Main navigation"
           >
-            {navLinks.map(({ to, label, exact }) => (
+            {/* Tuition Dropdown */}
+            <div
+              className="nav-dropdown-wrap"
+              ref={dropdownRef}
+              onMouseEnter={() => setTuitionOpen(true)}
+              onMouseLeave={() => setTuitionOpen(false)}
+            >
+              <button
+                onClick={() => setTuitionOpen((v) => !v)}
+                aria-haspopup="true"
+                aria-expanded={tuitionOpen}
+                className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded border-0 bg-transparent cursor-pointer ${isTuitionActive ? 'text-amber-400' : 'text-white/75 hover:text-white'
+                  }`}
+              >
+                Tuition
+                <ChevronDown
+                  size={13}
+                  style={{
+                    transition: 'transform 0.2s ease',
+                    transform: tuitionOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
+              </button>
+
+              <AnimatePresence>
+                {tuitionOpen && (
+                  <motion.div
+                    className="nav-dropdown-menu"
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                    transition={{ duration: 0.16, ease: 'easeOut' }}
+                  >
+                    {tuitionItems.map((item, i) => (
+                      <div key={item.to}>
+                        {i === 2 && <div className="nav-dropdown-divider" />}
+                        <Link
+                          to={item.to}
+                          className={`nav-dropdown-item ${location.pathname === item.to ? 'active-item' : ''
+                            }`}
+                          onClick={() => setTuitionOpen(false)}
+                        >
+                          <span className="flex items-center gap-2">
+                            <span style={{ color: '#F59E0B', opacity: 0.8 }}>{item.icon}</span>
+                            <span className="nav-dropdown-item-label">{item.label}</span>
+                          </span>
+                          <span className="nav-dropdown-item-sub pl-6">{item.sub}</span>
+                        </Link>
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Other links */}
+            {otherLinks.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
-                end={exact}
                 className={({ isActive }) =>
-                  `relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded ${
-                    isActive
-                      ? 'text-amber-400'
-                      : 'text-white/75 hover:text-white'
+                  `relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded ${isActive
+                    ? 'text-amber-400'
+                    : 'text-white/75 hover:text-white'
                   }`
                 }
               >
                 {label}
               </NavLink>
             ))}
+
             <Link
               to="/admissions"
               className="ml-3 btn-primary"
@@ -112,17 +210,60 @@ export default function Navbar() {
               className="flex flex-col px-5 pb-6 pt-2 gap-1"
               aria-label="Mobile navigation"
             >
-              {navLinks.map(({ to, label, exact }) => (
+              {/* Tuition sub-menu expandable */}
+              <button
+                onClick={() => setMobileAcadOpen((v) => !v)}
+                className={`flex items-center justify-between py-3 px-4 text-base font-medium border-b border-white/10 rounded bg-transparent border-0 border-b cursor-pointer ${isTuitionActive ? 'text-amber-400' : 'text-white/80'
+                  }`}
+                style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}
+              >
+                <span>Tuition</span>
+                <ChevronDown
+                  size={15}
+                  style={{
+                    transition: 'transform 0.2s ease',
+                    transform: mobileAcadOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
+              </button>
+              <AnimatePresence>
+                {mobileAcadOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    {tuitionItems.map((item) => (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        onClick={closeMenu}
+                        className="flex flex-col py-2.5 px-6 border-b text-sm"
+                        style={{
+                          borderBottom: '1px solid rgba(255,255,255,0.06)',
+                          color: location.pathname === item.to ? '#F59E0B' : 'rgba(255,255,255,0.7)',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <span className="font-semibold">{item.label}</span>
+                        <span style={{ fontSize: '0.7rem', opacity: 0.5, marginTop: '1px' }}>{item.sub}</span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {otherLinks.map(({ to, label }) => (
                 <NavLink
                   key={to}
                   to={to}
-                  end={exact}
                   onClick={closeMenu}
                   className={({ isActive }) =>
-                    `block py-3 px-4 text-base font-medium border-b border-white/10 transition-colors duration-200 rounded ${
-                      isActive
-                        ? 'text-amber-400'
-                        : 'text-white/80 hover:text-white'
+                    `block py-3 px-4 text-base font-medium border-b border-white/10 transition-colors duration-200 rounded ${isActive
+                      ? 'text-amber-400'
+                      : 'text-white/80 hover:text-white'
                     }`
                   }
                 >

@@ -107,7 +107,13 @@ export default function About() {
                   At Asmita's Samast Shikshan, we believe that education is most effective when it is personal, clear, and built on genuine understanding rather than surface-level memorization.
                 </p>
                 <p>
-                  Our tuition classes for 1st–10th grade students across MSC, CBSE, IC, and ICSE boards are designed with small batch sizes — so every student receives the attention and support they need to truly grasp their subjects.
+                  Our academic offering spans 1st through 12th standard. School tuition for students from 1st to 10th across HSC, CBSE, IC, and ICSE boards is designed with small batch sizes — so every student receives the attention and support they need.
+                </p>
+                <p>
+                  Students in 11th and 12th standard can receive academic support across Science, Commerce, and Arts streams — continuing their journey with the same focus on clarity and understanding.
+                </p>
+                <p>
+                  Academic classes are available both offline and online, giving students the flexibility to learn in a way that suits them.
                 </p>
                 <p>
                   Beyond academics, we recognize that physical wellbeing is equally important. Our Zumba classes for women offer a vibrant, energetic, and welcoming space to stay active and build confidence through movement.
@@ -148,6 +154,162 @@ export default function About() {
                 />
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FOUNDER & EDUCATOR ─── */}
+      <section
+        className="section-padding"
+        style={{ backgroundColor: '#0F172A' }}
+        aria-labelledby="founder-heading"
+      >
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+            {/* ── Left: Text content ── */}
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.18 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
+            >
+              {/* Label */}
+              <p
+                className="font-semibold tracking-widest uppercase mb-5"
+                style={{ fontSize: '0.68rem', color: 'rgba(217,119,6,0.75)', letterSpacing: '0.18em' }}
+              >
+                The Person Behind the Journey
+              </p>
+
+              {/* Gold line */}
+              <div className="gold-line mb-6" />
+
+              {/* Heading */}
+              <h2
+                id="founder-heading"
+                className="text-white font-extrabold mb-6"
+                style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight: 1.12 }}
+              >
+                Meet the Educator Behind Asmita's Samast Shikshan
+              </h2>
+
+              {/* Introduction */}
+              <p
+                className="leading-relaxed mb-10"
+                style={{ color: 'rgba(255,255,255,0.58)', fontSize: '0.97rem', lineHeight: '1.9' }}
+              >
+                With more than 20 years of experience in education, the founder and educator behind Asmita's Samast Shikshan brings a deep commitment to helping students learn with confidence, clarity, and consistency. Her approach is centered around understanding each student's learning needs and creating a supportive environment where students can grow academically and personally.
+              </p>
+
+              {/* Highlights — staggered reveal */}
+              <div className="flex flex-col gap-px" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+                {[
+                  { stat: '20+ Years', detail: 'Experience in Education' },
+                  { stat: 'Master B.Ed.', detail: 'Professional Qualification' },
+                  { stat: 'Founder & Educator', detail: `Asmita's Samast Shikshan` }
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.stat}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.4, delay: 0.1 + i * 0.1, ease: 'easeOut' }}
+                    className="flex items-center justify-between py-5"
+                    style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}
+                  >
+                    <p
+                      className="font-extrabold text-white"
+                      style={{ fontSize: 'clamp(1rem, 1.8vw, 1.25rem)', letterSpacing: '-0.01em' }}
+                    >
+                      {item.stat}
+                    </p>
+                    <p
+                      className="text-right"
+                      style={{ color: 'rgba(255,255,255,0.38)', fontSize: '0.82rem', letterSpacing: '0.02em' }}
+                    >
+                      {item.detail}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ── Right: Portrait ── */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.18 }}
+              transition={{ duration: 0.65, ease: 'easeOut', delay: 0.1 }}
+              className="flex justify-center lg:justify-end"
+            >
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '400px',
+                }}
+              >
+                {/* Subtle decorative offset frame */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    transform: 'translate(10px, 10px)',
+                    borderRadius: '1.25rem',
+                    border: '1.5px solid rgba(217,119,6,0.2)',
+                    zIndex: 0,
+                  }}
+                />
+                {/* Portrait container */}
+                <div
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    borderRadius: '1.25rem',
+                    overflow: 'hidden',
+                    boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+                    aspectRatio: '3 / 4',
+                    backgroundColor: '#1E293B',
+                  }}
+                >
+                  <img
+                    src="/founder.jpg"
+                    alt="Founder and Educator of Asmita's Samast Shikshan"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'top center',
+                      display: 'block',
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+                {/* Role chip — overlaid at bottom */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '1.5rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 2,
+                    backgroundColor: 'rgba(15,23,42,0.88)',
+                    backdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(217,119,6,0.3)',
+                    borderRadius: '2rem',
+                    padding: '0.45rem 1.1rem',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <p style={{ color: '#F59E0B', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                    Founder &amp; Educator
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>

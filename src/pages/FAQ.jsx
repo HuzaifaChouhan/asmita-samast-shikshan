@@ -5,11 +5,11 @@ import { Plus, Minus } from 'lucide-react'
 const faqs = [
   {
     q: 'What classes do you offer?',
-    a: 'We offer two programs: Tuition Classes for students from 1st to 10th grade covering all subjects, and Zumba Classes for women through our Special Ladies Batch.',
+    a: 'We offer two academic programs: School Tuition for students from 1st to 10th grade covering all subjects, and Senior Secondary support for 11th and 12th standard across Science, Commerce, and Arts. We also offer Zumba Classes for women through our Special Ladies Batch.',
   },
   {
     q: 'Which boards do you support?',
-    a: 'Our tuition classes support all major education boards — MSC, CBSE, IC, and ICSE.',
+    a: 'Our tuition classes support all major education boards — HSC, CBSE, IC, and ICSE.',
   },
   {
     q: 'Which subjects are covered?',
@@ -27,7 +27,28 @@ const faqs = [
     q: 'How can I enquire about enrollment?',
     a: "You can reach out through our website's admissions form, call us at +91 98699 11317 or +91 84520 19912, or send us a WhatsApp message. We'll respond to guide you through the next steps.",
   },
+  {
+    q: 'Do you offer online classes?',
+    a: 'Yes, online classes are available as a learning option. Students can indicate their preferred learning mode — offline or online — when they submit an inquiry.',
+  },
+  {
+    q: 'Can I attend Zumba classes online?',
+    a: 'Yes. Zumba classes are available both online and offline, allowing participants to choose the mode that works best for them. You can indicate your preference when you enquire.',
+  },
+  {
+    q: 'Do you offer classes for 11th and 12th?',
+    a: 'Yes, academic support is available for students in 11th and 12th standard.',
+  },
+  {
+    q: 'Which streams are available for 11th and 12th?',
+    a: 'Arts, Commerce, and Science streams are available for 11th and 12th standard students.',
+  },
+  {
+    q: 'Can I choose between online and offline classes?',
+    a: 'Yes. Academic students can indicate their preferred learning mode — offline or online — during the inquiry process. You can also select "Not Sure Yet" if you haven\'t decided.',
+  },
 ]
+
 
 function FAQItem({ faq, index }) {
   const [open, setOpen] = useState(false)
