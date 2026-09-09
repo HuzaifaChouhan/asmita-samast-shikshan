@@ -112,8 +112,10 @@ export default function Navbar() {
                 onClick={() => setTuitionOpen((v) => !v)}
                 aria-haspopup="true"
                 aria-expanded={tuitionOpen}
-                className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded border-0 bg-transparent cursor-pointer ${isTuitionActive ? 'text-amber-400' : 'text-white/75 hover:text-white'
-                  }`}
+                className={`relative flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded border-0 bg-transparent cursor-pointer`}
+                style={{ color: isTuitionActive ? '#e2c97e' : undefined }}
+                onMouseEnter={e => { if (!isTuitionActive) e.currentTarget.style.color = '#fff' }}
+                onMouseLeave={e => { if (!isTuitionActive) e.currentTarget.style.color = 'rgba(255,255,255,0.75)' }}
               >
                 Tuition
                 <ChevronDown
@@ -144,7 +146,7 @@ export default function Navbar() {
                           onClick={() => setTuitionOpen(false)}
                         >
                           <span className="flex items-center gap-2">
-                            <span style={{ color: '#F59E0B', opacity: 0.8 }}>{item.icon}</span>
+                            <span style={{ color: '#e2c97e', opacity: 0.85 }}>{item.icon}</span>
                             <span className="nav-dropdown-item-label">{item.label}</span>
                           </span>
                           <span className="nav-dropdown-item-sub pl-6">{item.sub}</span>
@@ -163,10 +165,11 @@ export default function Navbar() {
                 to={to}
                 className={({ isActive }) =>
                   `relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded ${isActive
-                    ? 'text-amber-400'
+                    ? ''
                     : 'text-white/75 hover:text-white'
                   }`
                 }
+                style={({ isActive }) => isActive ? { color: '#e2c97e' } : {}}
               >
                 {label}
               </NavLink>
@@ -183,7 +186,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="lg:hidden flex items-center justify-center w-10 h-10 text-white rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+            className="lg:hidden flex items-center justify-center w-10 h-10 text-white rounded focus:outline-none focus-visible:ring-2" style={{ '--tw-ring-color': '#c9a84c' }}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
@@ -204,7 +207,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="lg:hidden overflow-hidden"
-            style={{ backgroundColor: '#0F172A' }}
+            style={{ backgroundColor: '#1e2d6b' }}
           >
             <nav
               className="flex flex-col px-5 pb-6 pt-2 gap-1"
@@ -213,9 +216,11 @@ export default function Navbar() {
               {/* Tuition sub-menu expandable */}
               <button
                 onClick={() => setMobileAcadOpen((v) => !v)}
-                className={`flex items-center justify-between py-3 px-4 text-base font-medium border-b border-white/10 rounded bg-transparent border-0 border-b cursor-pointer ${isTuitionActive ? 'text-amber-400' : 'text-white/80'
-                  }`}
-                style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}
+                className={`flex items-center justify-between py-3 px-4 text-base font-medium rounded bg-transparent border-0 cursor-pointer text-white/80`}
+                style={{
+                  color: isTuitionActive ? '#e2c97e' : undefined,
+                  borderBottom: '1px solid rgba(255,255,255,0.1)',
+                }}
               >
                 <span>Tuition</span>
                 <ChevronDown
@@ -242,8 +247,8 @@ export default function Navbar() {
                         onClick={closeMenu}
                         className="flex flex-col py-2.5 px-6 border-b text-sm"
                         style={{
-                          borderBottom: '1px solid rgba(255,255,255,0.06)',
-                          color: location.pathname === item.to ? '#F59E0B' : 'rgba(255,255,255,0.7)',
+                          borderBottom: '1px solid rgba(201,168,76,0.1)',
+                          color: location.pathname === item.to ? '#e2c97e' : 'rgba(255,255,255,0.7)',
                           textDecoration: 'none',
                         }}
                       >
@@ -262,10 +267,11 @@ export default function Navbar() {
                   onClick={closeMenu}
                   className={({ isActive }) =>
                     `block py-3 px-4 text-base font-medium border-b border-white/10 transition-colors duration-200 rounded ${isActive
-                      ? 'text-amber-400'
+                      ? ''
                       : 'text-white/80 hover:text-white'
                     }`
                   }
+                  style={({ isActive }) => isActive ? { color: '#e2c97e' } : {}}
                 >
                   {label}
                 </NavLink>

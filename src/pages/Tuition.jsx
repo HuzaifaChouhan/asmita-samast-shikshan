@@ -17,7 +17,7 @@ const classGroups = [
   { label: 'Secondary', classes: ['9th', '10th'] },
 ]
 
-const boards = ['HSC', 'CBSE', 'IC', 'ICSE']
+const boards = ['SSC', 'CBSE', 'IC', 'ICSE']
 
 const teachingApproach = [
   {
@@ -38,7 +38,7 @@ const teachingApproach = [
   {
     icon: <BookOpen size={20} className="text-blue-600" />,
     title: 'Board Exam Focus',
-    desc: 'Special academic attention for examination preparation across HSC, CBSE, IC, and ICSE boards.',
+    desc: 'Special academic attention for examination preparation across SSC, CBSE, IC, and ICSE boards.',
   },
   {
     icon: <ClipboardCheck size={20} className="text-blue-600" />,
@@ -93,7 +93,7 @@ function LearningModeToggle() {
     <div>
       {/* Label */}
       <div className="flex justify-center mb-8">
-        <div className="learning-toggle learning-toggle-light" role="group" aria-label="Select learning mode">
+        <div className="learning-toggle" role="group" aria-label="Select learning mode">
           <div className="learning-toggle-pill" style={pillStyle} />
           <button
             ref={offlineRef}
@@ -128,20 +128,20 @@ function LearningModeToggle() {
         >
           <div>
             <h3
-              className="font-extrabold mb-3"
-              style={{ color: '#0F172A', fontSize: 'clamp(1.3rem, 2.5vw, 1.7rem)' }}
+              className="font-extrabold mb-3 text-white"
+              style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.7rem)' }}
             >
               {mode === 'offline' ? 'Classroom Learning' : 'Learn From Anywhere'}
             </h3>
-            <p className="text-slate-500 leading-relaxed mb-5" style={{ fontSize: '0.97rem' }}>
+            <p className="text-white/60 leading-relaxed mb-5" style={{ fontSize: '0.97rem' }}>
               {mode === 'offline'
                 ? 'Attend classes in person at our centre in Powai. Learn in a structured, focused environment with direct teacher interaction and personal attention.'
                 : 'Online classes are available for students who prefer learning from home. Quality academic support that fits your schedule and location.'}
             </p>
-            <div className="flex items-center gap-2 text-slate-400 text-sm mb-6">
+            <div className="flex items-center gap-2 text-white/40 text-sm mb-6">
               {mode === 'offline'
-                ? <><MapPin size={14} className="text-amber-500" /> 302 Samoa Building, Pacific Enclave, Powai</>
-                : <><Monitor size={14} className="text-amber-500" /> Available for academic enquiries — indicate your preference when you apply</>
+                ? <><MapPin size={14} className="text-amber-400" /> 302 Samoa Building, Pacific Enclave, Powai</>
+                : <><Monitor size={14} className="text-amber-400" /> Available for academic enquiries — indicate your preference when you apply</>
               }
             </div>
             <Link to="/admissions" className="btn-primary">
@@ -299,21 +299,29 @@ export default function Tuition() {
       <section
         id="online"
         className="section-padding"
-        style={{ backgroundColor: '#F8FAFC', paddingTop: '3rem' }}
+        style={{ backgroundColor: '#0F172A' }}
         aria-labelledby="learning-mode-heading"
       >
         <div className="container-custom">
-          <motion.div {...fadeUp} className="mb-10">
+          <motion.div {...fadeUp} className="mb-12">
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+              style={{ backgroundColor: 'rgba(217,119,6,0.12)', border: '1px solid rgba(217,119,6,0.3)' }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span className="text-xs font-bold tracking-widest uppercase text-amber-400">Now Available Online</span>
+            </div>
             <div className="gold-line mb-4" />
             <h2
               id="learning-mode-heading"
-              className="font-extrabold"
-              style={{ color: '#0F172A', fontSize: 'clamp(1.5rem, 2.8vw, 2rem)' }}
+              className="font-extrabold text-white"
+              style={{ fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight: 1.1 }}
             >
               Offline &amp; Online Classes
             </h2>
-            <p className="text-slate-500 mt-2 max-w-md">
-              Choose the learning mode that works best for you — attend in person or learn from wherever you are.
+            <p className="text-white/50 mt-3 max-w-xl" style={{ fontSize: '1rem', lineHeight: '1.85' }}>
+              All tuition classes are available in two modes. Attend in person at our Powai centre, or learn from wherever you are. Choose the option that works for you.
             </p>
           </motion.div>
           <LearningModeToggle />

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone } from 'lucide-react'
 
+const GOLD = '#e2c97e'
+
 const footerLinks = [
   { to: '/', label: 'Home' },
   { to: '/tuition', label: 'Tuition' },
@@ -15,7 +17,7 @@ export default function Footer() {
   return (
     <footer
       className="text-white"
-      style={{ backgroundColor: '#0F172A' }}
+      style={{ background: 'linear-gradient(180deg, #1e2d6b 0%, #131c47 100%)' }}
       role="contentinfo"
     >
       {/* Main Footer */}
@@ -31,8 +33,8 @@ export default function Footer() {
                 Asmita's Samast Shikshan
               </p>
               <p
-                className="font-medium text-amber-400 mt-1"
-                style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+                className="font-medium mt-1"
+                style={{ color: GOLD, fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}
               >
                 Education for Growth
               </p>
@@ -43,7 +45,7 @@ export default function Footer() {
             </p>
             <div className="mt-6 flex flex-col gap-3">
               <div className="flex items-start gap-2.5 text-white/60 text-sm">
-                <MapPin size={15} className="mt-0.5 shrink-0 text-amber-400" />
+                <MapPin size={15} className="mt-0.5 shrink-0" style={{ color: GOLD }} />
                 <span>
                   302, Samoa Building, Pacific Enclave,<br />
                   Opp. Dr. L H Hiranandani Hospital,<br />
@@ -51,7 +53,7 @@ export default function Footer() {
                 </span>
               </div>
               <div className="flex items-center gap-2.5 text-white/60 text-sm">
-                <Phone size={15} className="shrink-0 text-amber-400" />
+                <Phone size={15} className="shrink-0" style={{ color: GOLD }} />
                 <div className="flex flex-col gap-0.5">
                   <a
                     href="tel:+919869911317"
@@ -86,7 +88,9 @@ export default function Footer() {
                 <li key={to}>
                   <Link
                     to={to}
-                    className="text-white/65 text-sm hover:text-amber-400 transition-colors duration-200"
+                    className="text-white/65 text-sm transition-colors duration-200"
+                    onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+                    onMouseLeave={e => (e.currentTarget.style.color = '')}
                   >
                     {label}
                   </Link>
@@ -107,7 +111,9 @@ export default function Footer() {
               <li>
                 <Link
                   to="/tuition"
-                  className="text-white/65 text-sm hover:text-amber-400 transition-colors duration-200"
+                  className="text-white/65 text-sm transition-colors duration-200"
+                  onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+                  onMouseLeave={e => (e.currentTarget.style.color = '')}
                 >
                   Tuition Classes
                 </Link>
@@ -116,12 +122,14 @@ export default function Footer() {
                 <p className="text-white/40 text-xs mt-1">1st – 10th Class</p>
               </li>
               <li>
-                <p className="text-white/40 text-xs">HSC · CBSE · IC · ICSE</p>
+                <p className="text-white/40 text-xs">SSC · CBSE · IC · ICSE</p>
               </li>
               <li className="mt-3">
                 <Link
                   to="/zumba"
-                  className="text-white/65 text-sm hover:text-amber-400 transition-colors duration-200"
+                  className="text-white/65 text-sm transition-colors duration-200"
+                  onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+                  onMouseLeave={e => (e.currentTarget.style.color = '')}
                 >
                   Zumba Classes
                 </Link>
@@ -135,7 +143,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+      <div style={{ borderTop: '1px solid rgba(201,168,76,0.15)' }}>
         <div className="container-custom py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-white/40 text-xs">
             © 2026 Asmita's Samast Shikshan. All rights reserved.

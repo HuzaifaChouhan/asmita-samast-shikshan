@@ -110,7 +110,7 @@ export default function Contact() {
                   <div>
                     <p className="font-bold mb-1" style={{ color: '#0F172A' }}>Phone</p>
                     <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-4">
                         <a
                           href="tel:+919869911317"
                           className="text-slate-600 text-sm font-medium hover:text-amber-600 transition-colors"

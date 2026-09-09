@@ -474,7 +474,7 @@ export default function Admissions() {
               </h2>
               <p className="text-slate-500 text-sm mb-3">1st–10th Class · All Subjects</p>
               <div className="flex flex-wrap gap-2">
-                {['HSC', 'CBSE', 'IC', 'ICSE'].map((b) => (
+                {['SSC', 'CBSE', 'IC', 'ICSE'].map((b) => (
                   <span
                     key={b}
                     className="px-2.5 py-1 rounded text-xs font-bold"

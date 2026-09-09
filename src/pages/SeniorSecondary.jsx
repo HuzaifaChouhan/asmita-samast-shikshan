@@ -21,7 +21,7 @@ const streams = [
     accentColor: '#3B82F6',
     bgColor: '#EFF6FF',
     darkBg: '#1E3A5F',
-    img: 'https://images.unsplash.com/photo-1532094349884-543559b9a3a7?w=800&q=80',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR4jI0xTRk5Npn5Z4px3THi8SB-uYlblneHjef-MSt8A&s=10',
     imgAlt: 'Science textbooks and laboratory equipment',
   },
   {

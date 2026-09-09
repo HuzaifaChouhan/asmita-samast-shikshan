@@ -199,7 +199,7 @@ export default function Home() {
               <div className="relative p-8 md:p-10 h-full flex flex-col justify-between" style={{ minHeight: '400px' }}>
                 <div>
                   <div className="flex items-center gap-2 mb-6">
-                    <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>HSC</span>
+                    <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>SSC</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>CBSE</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>IC</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>ICSE</span>
@@ -299,6 +299,145 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── LEARN YOUR WAY ─── */}
+      <section
+        id="learn-your-way"
+        className="section-padding"
+        style={{ backgroundColor: '#F8FAFC' }}
+        aria-labelledby="learn-your-way-heading"
+      >
+        <div className="container-custom">
+          <motion.div {...fadeUp} className="mb-12 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
+              style={{
+                backgroundColor: '#FEF3C7',
+                border: '1px solid #FDE68A',
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#92400E' }}>Choose How You Learn</span>
+            </div>
+            <h2
+              id="learn-your-way-heading"
+              className="font-extrabold"
+              style={{ color: '#0F172A', fontSize: 'clamp(1.9rem, 4vw, 2.8rem)', lineHeight: 1.1 }}
+            >
+              Learn Your Way —
+              <br />
+              <span style={{ color: '#D97706' }}>Online</span> or <span style={{ color: '#0F172A' }}>Offline</span>
+            </h2>
+            <p className="text-slate-500 mt-4 max-w-lg mx-auto" style={{ fontSize: '1rem', lineHeight: '1.8' }}>
+              All academic tuition and Zumba classes are available in two modes. Pick what fits your life.
+            </p>
+          </motion.div>
+
+          {/* Two panels */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            {/* Offline panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="relative rounded-2xl overflow-hidden group"
+              style={{ minHeight: '340px' }}
+            >
+              {/* Image */}
+              <img
+                src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80"
+                alt="Students attending offline tuition classes in person"
+                style={{
+                  position: 'absolute', inset: 0,
+                  width: '100%', height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.55s ease',
+                }}
+                className="group-hover:scale-105"
+                loading="lazy"
+              />
+              {/* Overlay */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.35) 60%, transparent 100%)',
+              }} />
+              {/* Content */}
+              <div className="relative h-full flex flex-col justify-end p-8" style={{ minHeight: '340px' }}>
+                <div
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 self-start"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)' }}
+                >
+                  <MapPin size={12} className="text-amber-400" />
+                  <span className="text-xs font-semibold text-white/80">In-Person</span>
+                </div>
+                <h3 className="text-white font-extrabold mb-2" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)' }}>
+                  Offline Classes
+                </h3>
+                <p className="text-white/65 text-sm mb-5 max-w-xs">
+                  Attend in person at our centre in Powai. A focused, structured environment with direct teacher interaction.
+                </p>
+                <Link to="/tuition" className="inline-flex items-center gap-1.5 font-semibold text-sm text-amber-400">
+                  Learn More <ArrowRight size={14} />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Online panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+              className="relative rounded-2xl overflow-hidden group"
+              style={{ minHeight: '340px' }}
+            >
+              {/* Image */}
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJBelutSN5QZ6lmM_YejmvevlXakd5KN6BAcrWiHK8yQ&s=10"
+                alt="Student attending online class from home on a laptop"
+                style={{
+                  position: 'absolute', inset: 0,
+                  width: '100%', height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.55s ease',
+                }}
+                className="group-hover:scale-105"
+                loading="lazy"
+              />
+              {/* Overlay */}
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to top, rgba(15,23,42,0.90) 0%, rgba(15,23,42,0.35) 60%, transparent 100%)',
+              }} />
+              {/* Amber glow accent */}
+              <div style={{
+                position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+                background: 'linear-gradient(90deg, #D97706, #F59E0B, #D97706)',
+              }} />
+              {/* Content */}
+              <div className="relative h-full flex flex-col justify-end p-8" style={{ minHeight: '340px' }}>
+                <div
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 self-start"
+                  style={{ backgroundColor: 'rgba(217,119,6,0.2)', border: '1px solid rgba(217,119,6,0.4)' }}
+                >
+                  <Monitor size={12} className="text-amber-400" />
+                  <span className="text-xs font-semibold text-amber-400">Now Available Online</span>
+                </div>
+                <h3 className="text-white font-extrabold mb-2" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)' }}>
+                  Online Classes
+                </h3>
+                <p className="text-white/65 text-sm mb-5 max-w-xs">
+                  Learn from wherever you are. Tuition and Zumba both available online — quality support beyond the classroom.
+                </p>
+                <Link to="/admissions" className="inline-flex items-center gap-1.5 font-semibold text-sm text-amber-400">
+                  Enquire Now <ArrowRight size={14} />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── ACADEMIC EXPANSION SECTION ─── */}
       <section
         className="section-padding"
@@ -357,7 +496,7 @@ export default function Home() {
                   <div
                     className="pb-6"
                     style={{
-                      paddingLeft: '0.25rem',
+                      // paddingLeft: '0.25rem',
                       borderLeft: step.highlight ? '1px solid rgba(245,158,11,0.2)' : 'none',
                       paddingLeft: step.highlight ? '0.75rem' : '0',
                     }}
@@ -660,7 +799,7 @@ export default function Home() {
               style={{ height: '280px' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=900&q=80"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2TujiGtBBpZDNFv9e4xisBID4nh3D3jwEvkp5ncQUUQ&s=10"
                 alt="Mumbai cityscape representing Powai location"
                 className="img-cover"
                 loading="lazy"

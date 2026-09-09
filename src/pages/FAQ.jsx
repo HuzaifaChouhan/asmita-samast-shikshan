@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: 'Which boards do you support?',
-    a: 'Our tuition classes support all major education boards — HSC, CBSE, IC, and ICSE.',
+    a: 'Our tuition classes support all major education boards — SSC, CBSE, IC, and ICSE.',
   },
   {
     q: 'Which subjects are covered?',
