@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { OrdText } from '../utils/ordinal'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, Phone, ArrowRight, Trophy, Users, ShieldCheck, MessageCircle, BookOpen, Dumbbell, GraduationCap, Monitor } from 'lucide-react'
@@ -108,7 +109,7 @@ export default function Home() {
               className="text-white/75 mb-10 max-w-lg"
               style={{ fontSize: '1.1rem', lineHeight: '1.85' }}
             >
-              Academic tuition for 1st–12th standard — including 11th &amp; 12th across Science, Commerce, and Arts — alongside Zumba fitness programs for women. Available offline and online.
+              <OrdText>Academic tuition for 1st–12th standard — including 11th &amp; 12th across Science, Commerce, and Arts — alongside Zumba fitness programs for women. Available offline and online.</OrdText>
             </p>
 
             {/* CTA Buttons */}
@@ -199,6 +200,7 @@ export default function Home() {
               <div className="relative p-8 md:p-10 h-full flex flex-col justify-between" style={{ minHeight: '400px' }}>
                 <div>
                   <div className="flex items-center gap-2 mb-6">
+                    <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>HSC</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>SSC</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>CBSE</span>
                     <span className="board-badge" style={{ border: '1px solid rgba(255,255,255,0.25)', color: '#F59E0B' }}>IC</span>
@@ -211,9 +213,9 @@ export default function Home() {
                     Asmita Tuition Classes
                   </h3>
                   <p className="text-amber-400 font-semibold mb-1 text-sm tracking-wide uppercase">
-                    1st to 12th Standard
+                    <OrdText>1st to 12th Standard</OrdText>
                   </p>
-                  <p className="text-white/45 text-xs mb-4">Science · Commerce · Arts for 11th &amp; 12th · Offline &amp; Online</p>
+                  <p className="text-white/45 text-xs mb-4">Science · Commerce · Arts for <OrdText>11th &amp; 12th</OrdText> · Offline &amp; Online</p>
                   <ul className="flex flex-col gap-2 mb-8">
                     {['Concept-Based Learning', 'Small Batches', 'Personalized Attention', 'Regular Assessments'].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-white/70 text-sm">
@@ -455,8 +457,8 @@ export default function Home() {
               From School Years to Senior Secondary
             </h2>
             <p className="text-white/50 mt-3 max-w-lg" style={{ fontSize: '1rem' }}>
-              A complete academic pathway — from 1st standard through 12th, with support at every stage.
-              Available offline and online.
+              <OrdText>A complete academic pathway — from 1st standard through 12th, with support at every stage.</OrdText>
+              {' '}Available offline and online.
             </p>
           </motion.div>
 
@@ -466,13 +468,13 @@ export default function Home() {
             {/* Left: Progression */}
             <div className="flex flex-col gap-0">
               {[
-                { range: '1st – 5th', label: 'Primary', delay: 0 },
-                { range: '6th – 8th', label: 'Middle School', delay: 0.08 },
-                { range: '9th – 10th', label: 'Secondary', delay: 0.16 },
-                { range: '11th – 12th', label: 'Arts · Commerce · Science', delay: 0.24, highlight: true },
+                { range: <OrdText>1st – 5th</OrdText>, label: 'Primary', delay: 0 },
+                { range: <OrdText>6th – 8th</OrdText>, label: 'Middle School', delay: 0.08 },
+                { range: <OrdText>9th – 10th</OrdText>, label: 'Secondary', delay: 0.16 },
+                { range: <OrdText>11th – 12th</OrdText>, label: 'Arts · Commerce · Science', delay: 0.24, highlight: true },
               ].map((step, i, arr) => (
                 <motion.div
-                  key={step.range}
+                  key={step.label}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -542,7 +544,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-white font-bold text-sm">School Tuition</p>
-                    <p className="text-white/40 text-xs">1st to 10th Standard</p>
+                    <p className="text-white/40 text-xs"><OrdText>1st to 10th Standard</OrdText></p>
                   </div>
                 </div>
                 <p className="text-white/50 text-sm leading-relaxed">
@@ -700,7 +702,7 @@ export default function Home() {
               {
                 num: '01',
                 title: 'Choose Your Program',
-                desc: 'Decide between Tuition Classes for your child (1st–10th) or Zumba sessions for women.',
+                desc: <OrdText>Decide between Tuition Classes for your child (1st–10th) or Zumba sessions for women.</OrdText>,
                 icon: <BookOpen size={20} className="text-amber-600" />,
               },
               {

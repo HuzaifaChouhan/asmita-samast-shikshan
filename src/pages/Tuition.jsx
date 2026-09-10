@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, BookOpen, Users, ClipboardCheck, Target, Brain, Monitor, MapPin } from 'lucide-react'
 import anime from 'animejs'
+import { Ord, OrdText } from '../utils/ordinal'
 
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
@@ -17,7 +18,7 @@ const classGroups = [
   { label: 'Secondary', classes: ['9th', '10th'] },
 ]
 
-const boards = ['SSC', 'CBSE', 'IC', 'ICSE']
+const boards = ['HSC', 'SSC', 'CBSE', 'IC', 'ICSE']
 
 const teachingApproach = [
   {
@@ -38,7 +39,7 @@ const teachingApproach = [
   {
     icon: <BookOpen size={20} className="text-blue-600" />,
     title: 'Board Exam Focus',
-    desc: 'Special academic attention for examination preparation across SSC, CBSE, IC, and ICSE boards.',
+    desc: 'Special academic attention for examination preparation across HSC, SSC, CBSE, IC, and ICSE boards.',
   },
   {
     icon: <ClipboardCheck size={20} className="text-blue-600" />,
@@ -226,7 +227,7 @@ export default function Tuition() {
                 Build Strong Foundations. Learn With Confidence.
               </h1>
               <p className="text-white/65 max-w-md mb-3" style={{ fontSize: '1rem', lineHeight: '1.8' }}>
-                Asmita Tuition Classes provide academic support for students from 1st to 12th standard — school tuition for all grades, and senior secondary support for 11th &amp; 12th across Science, Commerce, and Arts.
+                <OrdText>Asmita Tuition Classes provide academic support for students from 1st to 12th standard — school tuition for all grades, and senior secondary support for 11th &amp; 12th across Science, Commerce, and Arts.</OrdText>
               </p>
               <p className="text-amber-400/80 text-sm mb-8">
                 Available Offline &amp; Online
@@ -261,7 +262,7 @@ export default function Tuition() {
               className="font-extrabold"
               style={{ color: '#0F172A', fontSize: 'clamp(1.6rem, 3vw, 2.3rem)' }}
             >
-              School Tuition — 1st to 10th
+              School Tuition — <Ord>1st</Ord> to <Ord>10th</Ord>
             </h2>
             <p className="text-slate-500 mt-2">Comprehensive tuition for every stage of school education.</p>
           </motion.div>
@@ -285,7 +286,7 @@ export default function Tuition() {
                       className="px-3 py-1.5 rounded-lg text-sm font-semibold"
                       style={{ backgroundColor: '#EFF6FF', color: '#1E40AF' }}
                     >
-                      {cls} Class
+                      <Ord>{cls}</Ord> Class
                     </span>
                   ))}
                 </div>

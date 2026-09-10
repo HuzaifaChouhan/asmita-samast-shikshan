@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Monitor, MapPin, ChevronRight } from 'lucide-react'
+import { Ord, OrdText } from '../utils/ordinal'
 import anime from 'animejs'
 
 const fadeUp = {
@@ -51,10 +52,10 @@ const streams = [
 ]
 
 const progressionSteps = [
-  { label: '1st – 5th', sublabel: 'Primary', done: true },
-  { label: '6th – 8th', sublabel: 'Middle School', done: true },
-  { label: '9th – 10th', sublabel: 'Secondary', done: true },
-  { label: '11th – 12th', sublabel: 'Arts · Commerce · Science', done: false, highlight: true },
+  { label: <><Ord>1st</Ord> – <Ord>5th</Ord></>, sublabel: 'Primary', done: true },
+  { label: <><Ord>6th</Ord> – <Ord>8th</Ord></>, sublabel: 'Middle School', done: true },
+  { label: <><Ord>9th</Ord> – <Ord>10th</Ord></>, sublabel: 'Secondary', done: true },
+  { label: <><Ord>11th</Ord> – <Ord>12th</Ord></>, sublabel: 'Arts · Commerce · Science', done: false, highlight: true },
 ]
 
 function LearningToggle() {
@@ -219,10 +220,10 @@ export default function SeniorSecondary() {
               >
                 Your Next Academic Step.
                 <br />
-                <span style={{ color: '#F59E0B' }}>11th &amp; 12th Standard.</span>
+                <span style={{ color: '#F59E0B' }}><Ord>11th</Ord> &amp; <Ord>12th</Ord> Standard.</span>
               </h1>
               <p className="text-white/60 max-w-md mb-8" style={{ fontSize: '1rem', lineHeight: '1.85' }}>
-                Continue your academic journey with dedicated support for 11th and 12th standard across Science, Commerce, and Arts.
+                <OrdText>Continue your academic journey with dedicated support for 11th and 12th standard across Science, Commerce, and Arts.</OrdText>
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <Link to="/admissions" className="btn-primary">
@@ -279,7 +280,7 @@ export default function SeniorSecondary() {
           <div className="flex flex-col md:flex-row gap-0 md:gap-0 items-stretch">
             {progressionSteps.map((step, i) => (
               <div
-                key={step.label}
+                key={step.sublabel}
                 className="prog-item flex-1 opacity-0"
                 style={{ position: 'relative' }}
               >

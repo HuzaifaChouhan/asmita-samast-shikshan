@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone } from 'lucide-react'
+import { Ord } from '../utils/ordinal'
 
 const GOLD = '#e2c97e'
 
@@ -40,8 +41,8 @@ export default function Footer() {
               </p>
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
-              A dedicated education and wellness center in Powai, Mumbai — offering tuition for
-              1st–10th class students and Zumba fitness classes for women.
+              A dedicated education and wellness center in Powai, Mumbai — offering tuition for{' '}
+              <Ord>1st</Ord>–<Ord>12th</Ord> class students and Zumba fitness classes for women.
             </p>
             <div className="mt-6 flex flex-col gap-3">
               <div className="flex items-start gap-2.5 text-white/60 text-sm">
@@ -119,10 +120,26 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <p className="text-white/40 text-xs mt-1">1st – 10th Class</p>
+                <p className="text-white/40 text-xs mt-1"><Ord>1st</Ord> – <Ord>10th</Ord> Class</p>
               </li>
               <li>
-                <p className="text-white/40 text-xs">SSC · CBSE · IC · ICSE</p>
+                <p className="text-white/40 text-xs">HSC · SSC · CBSE · IC · ICSE</p>
+              </li>
+              <li className="mt-3">
+                <Link
+                  to="/tuition/senior-secondary"
+                  className="text-white/65 text-sm transition-colors duration-200"
+                  onMouseEnter={e => (e.currentTarget.style.color = GOLD)}
+                  onMouseLeave={e => (e.currentTarget.style.color = '')}
+                >
+                  Senior Secondary
+                </Link>
+              </li>
+              <li>
+                <p className="text-white/40 text-xs mt-1"><Ord>11th</Ord> – <Ord>12th</Ord> Class</p>
+              </li>
+              <li>
+                <p className="text-white/40 text-xs">Science · Commerce · Arts</p>
               </li>
               <li className="mt-3">
                 <Link

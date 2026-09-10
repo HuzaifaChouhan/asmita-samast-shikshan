@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Focus, Lightbulb, UserCheck, Activity, Heart } from 'lucide-react'
+import { OrdText } from '../utils/ordinal'
 
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
@@ -107,10 +108,10 @@ export default function About() {
                   At Asmita's Samast Shikshan, we believe that education is most effective when it is personal, clear, and built on genuine understanding rather than surface-level memorization.
                 </p>
                 <p>
-                  Our academic offering spans 1st through 12th standard. School tuition for students from 1st to 10th across SSC, CBSE, IC, and ICSE boards is designed with small batch sizes — so every student receives the attention and support they need.
+                  <OrdText>Our academic offering spans 1st through 12th standard. School tuition for students from 1st to 12th across HSC, SSC, CBSE, IC, and ICSE boards is designed with small batch sizes — so every student receives the attention and support they need.</OrdText>
                 </p>
                 <p>
-                  Students in 11th and 12th standard can receive academic support across Science, Commerce, and Arts streams — continuing their journey with the same focus on clarity and understanding.
+                  <OrdText>Students in 11th and 12th standard can receive academic support across Science, Commerce, and Arts streams — continuing their journey with the same focus on clarity and understanding.</OrdText>
                 </p>
                 <p>
                   Academic classes are available both offline and online, giving students the flexibility to learn in a way that suits them.

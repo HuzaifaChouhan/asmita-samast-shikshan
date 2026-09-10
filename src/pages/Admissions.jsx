@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, MessageCircle, CheckCircle } from 'lucide-react'
+import { Ord } from '../utils/ordinal'
 
 const WHATSAPP_URL =
   "https://wa.me/919869911317?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Asmita's%20Samast%20Shikshan%20programs."
@@ -29,7 +30,7 @@ const programTypes = [
     id: 'school-tuition',
     value: 'School Tuition',
     label: 'School Tuition',
-    sub: '1st to 10th · All Subjects',
+    sub: <><Ord>1st</Ord> to <Ord>10th</Ord> · All Subjects</>,
     accent: '#1E40AF',
     bg: '#EFF6FF',
     border: '#BFDBFE',
@@ -472,9 +473,9 @@ export default function Admissions() {
               >
                 School Tuition
               </h2>
-              <p className="text-slate-500 text-sm mb-3">1st–10th Class · All Subjects</p>
+              <p className="text-slate-500 text-sm mb-3"><Ord>1st</Ord>–<Ord>10th</Ord> Class · All Subjects</p>
               <div className="flex flex-wrap gap-2">
-                {['SSC', 'CBSE', 'IC', 'ICSE'].map((b) => (
+                {['HSC', 'SSC', 'CBSE', 'IC', 'ICSE'].map((b) => (
                   <span
                     key={b}
                     className="px-2.5 py-1 rounded text-xs font-bold"

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, BookOpen, GraduationCap, Monitor } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Ord } from '../utils/ordinal'
 
 const WHATSAPP_URL =
   "https://wa.me/919869911317?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Asmita's%20Samast%20Shikshan%20programs."
@@ -10,13 +11,13 @@ const tuitionItems = [
   {
     to: '/tuition',
     label: 'School Tuition',
-    sub: '1st–10th · All Subjects',
+    sub: <><Ord>1st</Ord>–<Ord>10th</Ord> · All Subjects</>,
     icon: <BookOpen size={15} />,
   },
   {
     to: '/tuition/senior-secondary',
     label: 'Senior Secondary',
-    sub: '11th–12th · Science, Commerce, Arts',
+    sub: <><Ord>11th</Ord>–<Ord>12th</Ord> · Science, Commerce, Arts</>,
     icon: <GraduationCap size={15} />,
   },
   {
