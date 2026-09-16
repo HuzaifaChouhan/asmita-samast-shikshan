@@ -1,7 +1,5 @@
-import { useNavigate, useLocation, NavLink } from 'react-router-dom'
-import {
-  LayoutDashboard, FileText, Users, Star, LogOut, Menu, X
-} from 'lucide-react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { LayoutDashboard, FileText, Users, Star, LogOut, Menu, X } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const navItems = [
@@ -22,13 +20,11 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
 
   return (
     <div className="layout">
-      {/* Sidebar overlay on mobile */}
-      {mobileOpen && (
-        <div
-          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 49 }}
-          onClick={() => setMobileOpen(false)}
-        />
-      )}
+      {/* Mobile overlay */}
+      <div
+        className={`sidebar-overlay ${mobileOpen ? 'visible' : ''}`}
+        onClick={() => setMobileOpen(false)}
+      />
 
       {/* Sidebar */}
       <nav className={`sidebar ${mobileOpen ? 'open' : ''}`}>
@@ -53,24 +49,26 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
         </div>
 
         <div className="sidebar-footer">
-          <button className="nav-item" onClick={handleLogout} style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <button className="nav-item" onClick={handleLogout}>
             <LogOut size={16} />
             Logout
           </button>
         </div>
       </nav>
 
-      {/* Main */}
+      {/* Main content */}
       <div className="main">
         <header className="topbar">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            {/* Hamburger — shown on mobile via CSS */}
             <button
-              className="btn btn-ghost"
-              style={{ display: 'none', padding: '0.3rem' }}
               id="mobile-menu-btn"
+              className="btn btn-ghost"
+              style={{ padding: '0.3rem', display: 'none' }}
               onClick={() => setMobileOpen(o => !o)}
+              aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={20} color="#1e2d6b" /> : <Menu size={20} color="#1e2d6b" />}
             </button>
             <span className="topbar-title">{title}</span>
           </div>

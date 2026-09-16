@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     LoginView, LogoutView, MeView,
     StatsView,
-    InquiryListView, InquiryDetailView,
+    InquiryListCreateView, InquiryDetailView,
     TeacherListCreateView, TeacherDetailView,
     TestimonialListCreateView, TestimonialDetailView,
 )
@@ -17,7 +17,7 @@ urlpatterns = [
     path("stats/", StatsView.as_view(), name="admin-stats"),
 
     # Inquiries
-    path("inquiries/", InquiryListView.as_view(), name="admin-inquiry-list"),
+    path("inquiries/", InquiryListCreateView.as_view(), name="admin-inquiry-list"),
     path("inquiries/<int:pk>/", InquiryDetailView.as_view(), name="admin-inquiry-detail"),
 
     # Teachers

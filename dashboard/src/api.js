@@ -40,6 +40,7 @@ export const inquiriesApi = {
     const qs = new URLSearchParams(params).toString()
     return request('GET', `/inquiries/${qs ? '?' + qs : ''}`)
   },
+  create: (data) => request('POST', '/inquiries/', data),
   update: (id, data) => request('PATCH', `/inquiries/${id}/`, data),
   delete: (id) => request('DELETE', `/inquiries/${id}/`),
 }

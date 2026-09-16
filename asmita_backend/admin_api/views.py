@@ -73,7 +73,7 @@ class StatsView(APIView):
 
 # ── Inquiries ───────────────────────────────────────────────────────────────────
 
-class InquiryListView(generics.ListAPIView):
+class InquiryListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
     serializer_class = InquiryAdminSerializer
 
@@ -86,6 +86,7 @@ class InquiryListView(generics.ListAPIView):
         if search:
             qs = qs.filter(full_name__icontains=search) | qs.filter(email__icontains=search) | qs.filter(phone__icontains=search)
         return qs
+
 
 
 class InquiryDetailView(generics.RetrieveUpdateDestroyAPIView):
