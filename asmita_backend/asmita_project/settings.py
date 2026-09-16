@@ -7,8 +7,14 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "insecure-default-key")
-DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+# In production on Render, set DEBUG=False in your Render Environment Variables
+DEBUG = os.getenv("DEBUG", "False") == "True"
+
+# Automatically pull your Render app URL or fall back to localhost
+RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 INSTALLED_APPS = [
@@ -28,8 +34,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware", # Must be as high as possible
+    "corsheaders.middleware.CorsMiddleware",  # Must be as high as possible
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Added for serving static files on Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -86,6 +93,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# Enable WhiteNoise storage compression for production static files
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files setup (for images like teacher photos and testimonial pictures)
 MEDIA_URL = "/media/"
@@ -93,16 +103,28 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# CORS configuration (allowing all for local/public frontends; adjust for production)
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS Configuration for Production
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://asmita-samast-shikshan.vercel.app",  # Your exact Vercel frontend URL
+]
 
-# Django REST Framework global settings (optional basic rate limiting defaults)
+CORS_ALLOW_ALL_ORIGINS = False 
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://asmita-samast-shikshan.vercel.app",  # Your exact Vercel frontend URL
+]
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
+
+# Django REST Framework global settings
 REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.AnonRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {
         "anon": "100/day",
-        "inquiry": "5/minute", # Custom scope for inquiry spam prevention
+        "inquiry": "5/minute",
     },
 }
