@@ -149,23 +149,22 @@ function AdmissionForm() {
       full_name: form.name,
       email: form.email || null,
       phone: form.phone,
-      student_name: form.name, // or map to a separate student name field if you collect it separately
+      student_name: form.name,
       class_applying_for:
         `${form.programType} - ${form.studentClass || form.standard || ""} ${form.stream || ""} (${form.learningMode})`.trim(),
       message: form.message,
     };
 
+    const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/v1/admissions/inquiries/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+      const response = await fetch(`${API_URL}/api/inquiries/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(payload),
+      });
 
       const data = await response.json();
 
@@ -183,7 +182,6 @@ function AdmissionForm() {
           message: "",
         });
       } else {
-        // Handle Django backend field validation errors if any
         setApiError(
           "Failed to submit inquiry. Please check your inputs or try again later.",
         );
@@ -637,7 +635,7 @@ export default function Admissions() {
                 <Ord>1st</Ord>–<Ord>10th</Ord> Class · All Subjects
               </p>
               <div className="flex flex-wrap gap-2">
-                {["HSC", "SSC", "CBSE", "IC", "ICSE"].map((b) => (
+                {["SSC", "CBSE", "IC", "ICSE"].map((b) => (
                   <span
                     key={b}
                     className="px-2.5 py-1 rounded text-xs font-bold"
@@ -669,7 +667,7 @@ export default function Admissions() {
                 11th &amp; 12th Standard
               </p>
               <div className="flex flex-wrap gap-2">
-                {["Science", "Commerce", "Arts"].map((s) => (
+                {["HSC", "Science", "Commerce", "Arts"].map((s) => (
                   <span
                     key={s}
                     className="px-2.5 py-1 rounded text-xs font-bold"
