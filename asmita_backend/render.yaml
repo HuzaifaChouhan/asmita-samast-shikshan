@@ -2,11 +2,16 @@ services:
   - type: web
     name: asmita-backend
     runtime: python
+    rootDir: asmita_backend
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "gunicorn myproject.wsgi:application"
+    startCommand: "gunicorn asmita_project.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.0
       - key: WEB_CONCURRENCY
         value: 4
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"

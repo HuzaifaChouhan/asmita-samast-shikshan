@@ -26,11 +26,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
     # Local apps
     "teachers",
     "testimonials",
     "admissions",
+    "admin_api",
 ]
 
 MIDDLEWARE = [
@@ -106,20 +108,31 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CORS Configuration for Production
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://localhost:5174",
     "http://localhost:3000",
-    "https://asmita-samast-shikshan.vercel.app",  # Your exact Vercel frontend URL
+    "https://asmita-samast-shikshan.vercel.app",  # Public website Vercel URL
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False 
+# Add dashboard Vercel URL from environment variable (set this on Render after deploying dashboard)
+DASHBOARD_URL = os.getenv("DASHBOARD_URL", "")
+if DASHBOARD_URL:
+    CORS_ALLOWED_ORIGINS.append(DASHBOARD_URL)
+
+CORS_ALLOW_ALL_ORIGINS = False
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://asmita-samast-shikshan.vercel.app",  # Your exact Vercel frontend URL
+    "https://asmita-samast-shikshan.vercel.app",
 ]
 if RENDER_EXTERNAL_HOSTNAME:
     CSRF_TRUSTED_ORIGINS.append(f"https://{RENDER_EXTERNAL_HOSTNAME}")
+if DASHBOARD_URL:
+    CSRF_TRUSTED_ORIGINS.append(DASHBOARD_URL)
 
 # Django REST Framework global settings
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.AnonRateThrottle",
     ],
