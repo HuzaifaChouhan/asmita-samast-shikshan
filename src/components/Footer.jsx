@@ -173,7 +173,7 @@ export default function Footer() {
               </li>
               <li>
                 <p className="text-white/40 text-xs mt-1">
-                  Special Ladies Batch
+                  Private Ladies Batch
                 </p>
               </li>
             </ul>

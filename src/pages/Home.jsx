@@ -60,7 +60,7 @@ export default function Home() {
   // Ensure video plays (handles browser autoplay policy)
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   }, []);
 
@@ -251,25 +251,7 @@ export default function Home() {
                         color: "#F59E0B",
                       }}
                     >
-                      SSC
-                    </span>
-                    <span
-                      className="board-badge"
-                      style={{
-                        border: "1px solid rgba(255,255,255,0.25)",
-                        color: "#F59E0B",
-                      }}
-                    >
-                      HSC
-                    </span>
-                    <span
-                      className="board-badge"
-                      style={{
-                        border: "1px solid rgba(255,255,255,0.25)",
-                        color: "#F59E0B",
-                      }}
-                    >
-                      CBSE
+                      ICSE
                     </span>
                     <span
                       className="board-badge"
@@ -287,7 +269,34 @@ export default function Home() {
                         color: "#F59E0B",
                       }}
                     >
-                      ICSE
+                      IG
+                    </span>
+                    <span
+                      className="board-badge"
+                      style={{
+                        border: "1px solid rgba(255,255,255,0.25)",
+                        color: "#F59E0B",
+                      }}
+                    >
+                      CBSC
+                    </span>
+                    <span
+                      className="board-badge"
+                      style={{
+                        border: "1px solid rgba(255,255,255,0.25)",
+                        color: "#F59E0B",
+                      }}
+                    >
+                      HSC
+                    </span>
+                    <span
+                      className="board-badge"
+                      style={{
+                        border: "1px solid rgba(255,255,255,0.25)",
+                        color: "#F59E0B",
+                      }}
+                    >
+                      SSC
                     </span>
                   </div>
                   <h3

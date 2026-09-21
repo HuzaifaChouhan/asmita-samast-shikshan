@@ -16,9 +16,10 @@ const classGroups = [
   { label: 'Primary', classes: ['1st', '2nd', '3rd', '4th', '5th'] },
   { label: 'Middle School', classes: ['6th', '7th', '8th'] },
   { label: 'Secondary', classes: ['9th', '10th'] },
+  { label: 'Higher Secondary', classes: ['11th', '12th'], streams: ['Arts', 'Commerce', 'Science'] },
 ]
 
-const boards = ['HSC', 'SSC', 'CBSE', 'IC', 'ICSE']
+const boards = ['ICSE', 'IC', 'IG', 'CBSE', 'HSC', 'SSC']
 
 const teachingApproach = [
   {
@@ -46,6 +47,11 @@ const teachingApproach = [
     title: 'Regular Assessments',
     desc: 'Regular assessment and preparation to track progress and identify areas needing improvement.',
   },
+  {
+    icon: <BookOpen size={20} className="text-blue-600" />,
+    title: 'Personal Guidance',
+    desc: 'Personal guidance of parent & students (online & offline)'
+  }
 ]
 
 const learningProcess = ['Understand', 'Practice', 'Assess', 'Improve', 'Prepare']
@@ -267,7 +273,7 @@ export default function Tuition() {
             <p className="text-slate-500 mt-2">Comprehensive tuition for every stage of school education.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
             {classGroups.map((group, gi) => (
               <motion.div
                 key={group.label}
@@ -290,6 +296,19 @@ export default function Tuition() {
                     </span>
                   ))}
                 </div>
+                {group.streams && (
+                  <div className="flex flex-wrap gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #e2e8f0' }}>
+                    {group.streams.map((stream) => (
+                      <span
+                        key={stream}
+                        className="px-3 py-1 rounded-lg text-xs font-semibold"
+                        style={{ backgroundColor: '#F5F3FF', color: '#6D28D9' }}
+                      >
+                        {stream}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
