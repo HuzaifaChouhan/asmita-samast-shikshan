@@ -278,7 +278,7 @@ export default function Home() {
                         color: "#F59E0B",
                       }}
                     >
-                      CBSC
+                      CBSE
                     </span>
                     <span
                       className="board-badge"
