@@ -13,6 +13,8 @@ import About from './pages/About'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import Teachers from './pages/Teachers'
+import Testimonials from './pages/Testimonials'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -38,6 +40,8 @@ function AppContent() {
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </PageTransition>

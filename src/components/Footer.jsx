@@ -8,6 +8,8 @@ const footerLinks = [
   { to: "/", label: "Home" },
   { to: "/tuition", label: "Tuition" },
   { to: "/zumba", label: "Zumba" },
+  { to: "/teachers", label: "Teachers" },
+  { to: "/testimonials", label: "Testimonials" },
   { to: "/admissions", label: "Admissions" },
   { to: "/about", label: "About" },
   { to: "/faq", label: "FAQ" },

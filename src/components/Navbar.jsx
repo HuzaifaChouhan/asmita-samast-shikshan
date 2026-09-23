@@ -30,6 +30,8 @@ const tuitionItems = [
 
 const otherLinks = [
   { to: '/zumba', label: 'Zumba' },
+  { to: '/teachers', label: 'Teachers' },
+  { to: '/testimonials', label: 'Testimonials' },
   { to: '/admissions', label: 'Admissions' },
   { to: '/about', label: 'About' },
   { to: '/faq', label: 'FAQ' },
@@ -93,7 +95,7 @@ export default function Navbar() {
             <img
               src="/logo.jpg"
               alt="Asmita's Samast Shikshan Logo"
-              className="h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              className="h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
             />
           </Link>
 

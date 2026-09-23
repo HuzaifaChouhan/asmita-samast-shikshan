@@ -29,7 +29,11 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
       {/* Sidebar */}
       <nav className={`sidebar ${mobileOpen ? 'open' : ''}`}>
         <div className="sidebar-logo">
-          <div className="sidebar-logo-title">Asmita's Samast Shikshan</div>
+          <img
+            src="/logo.jpg"
+            alt="Asmita's Samast Shikshan"
+            style={{ height: '56px', width: 'auto', objectFit: 'contain', display: 'block' }}
+          />
           <div className="sidebar-logo-sub">Admin Panel</div>
         </div>
 
@@ -72,7 +76,11 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
             </button>
             <span className="topbar-title">{title}</span>
           </div>
-          <span className="topbar-user">{user?.username}</span>
+          <img
+            src="/logo.jpg"
+            alt="Asmita's Samast Shikshan"
+            style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+          />
         </header>
 
         <div className="page-content">
