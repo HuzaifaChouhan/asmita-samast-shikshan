@@ -77,7 +77,7 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
             <span className="topbar-title">{title}</span>
           </div>
           <img
-            src="/logo.jpg"
+            src="/logoo.jpg"
             alt="Asmita's Samast Shikshan"
             style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
           />
