@@ -9,11 +9,24 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem('admin_token')
-    const savedUser = localStorage.getItem('admin_user')
-    if (token && savedUser) {
-      setUser(JSON.parse(savedUser))
+    if (!token) {
+      setLoading(false)
+      return
     }
-    setLoading(false)
+    // Verify the token is still valid with the server
+    authApi.me()
+      .then(data => {
+        const u = { username: data.username, email: data.email }
+        localStorage.setItem('admin_user', JSON.stringify(u))
+        setUser(u)
+      })
+      .catch(() => {
+        // Token is stale or invalid — clear everything and force re-login
+        localStorage.removeItem('admin_token')
+        localStorage.removeItem('admin_user')
+        setUser(null)
+      })
+      .finally(() => setLoading(false))
   }, [])
 
   async function login(username, password) {
