@@ -1,4 +1,4 @@
-import { X, AlertTriangle } from 'lucide-react'
+import { X, AlertTriangle } from 'lucide-react-dashboard'
 
 export default function ConfirmDialog({ title, message, onConfirm, onCancel, danger = true }) {
   return (
@@ -17,7 +17,7 @@ export default function ConfirmDialog({ title, message, onConfirm, onCancel, dan
         <div className="modal-footer">
           <button className="btn btn-ghost" onClick={onCancel}>Cancel</button>
           <button
-            className={`btn ${danger ? 'btn-danger' : 'btn-primary'}`}
+            className={`btn ${danger ? 'btn-danger' : 'dash-btn-primary'}`}
             onClick={onConfirm}
           >
             Confirm

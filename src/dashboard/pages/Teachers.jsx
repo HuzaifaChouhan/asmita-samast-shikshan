@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Plus, Search, Edit2, Trash2, Users, X } from 'lucide-react'
+import { Plus, Search, Edit2, Trash2, Users, X } from 'lucide-react-dashboard'
 import { teachersApi } from '../api'
 import ConfirmDialog from '../components/ConfirmDialog'
 import { toast } from '../components/Toast'
@@ -105,7 +105,7 @@ export default function TeachersPage() {
                 onChange={e => setSearch(e.target.value)}
               />
             </div>
-            <button className="btn btn-primary" onClick={openAdd}>
+            <button className="btn dash-btn-primary" onClick={openAdd}>
               <Plus size={15} /> Add Teacher
             </button>
           </div>
@@ -137,7 +137,7 @@ export default function TeachersPage() {
                   <div className="item-card-sub">🕐 {t.experience_years} yrs experience</div>
                 )}
                 <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center', marginTop: '0.2rem' }}>
-                  <span className={`badge ${t.is_active ? 'badge-active' : 'badge-inactive'}`}>
+                  <span className={`dash-badge ${t.is_active ? 'badge-active' : 'badge-inactive'}`}>
                     {t.is_active ? 'Active' : 'Inactive'}
                   </span>
                 </div>
@@ -166,38 +166,38 @@ export default function TeachersPage() {
             <form onSubmit={handleSave}>
               <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
                 <div className="form-group">
-                  <label className="form-label">Full Name *</label>
-                  <input className="form-input" required value={form.name}
+                  <label className="dash-form-label">Full Name *</label>
+                  <input className="dash-form-input" required value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Designation *</label>
-                  <input className="form-input" required value={form.designation}
+                  <label className="dash-form-label">Designation *</label>
+                  <input className="dash-form-input" required value={form.designation}
                     onChange={e => setForm(f => ({ ...f, designation: e.target.value }))} placeholder="e.g. Senior Mathematics Teacher" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Subject</label>
-                  <input className="form-input" value={form.subject}
+                  <label className="dash-form-label">Subject</label>
+                  <input className="dash-form-input" value={form.subject}
                     onChange={e => setForm(f => ({ ...f, subject: e.target.value }))} placeholder="e.g. Mathematics" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Experience (years)</label>
-                  <input className="form-input" type="number" min="0" value={form.experience_years}
+                  <label className="dash-form-label">Experience (years)</label>
+                  <input className="dash-form-input" type="number" min="0" value={form.experience_years}
                     onChange={e => setForm(f => ({ ...f, experience_years: e.target.value }))} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Bio</label>
+                  <label className="dash-form-label">Bio</label>
                   <textarea className="form-textarea" value={form.bio}
                     onChange={e => setForm(f => ({ ...f, bio: e.target.value }))} placeholder="Short description…" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Display Order</label>
-                  <input className="form-input" type="number" value={form.display_order}
+                  <label className="dash-form-label">Display Order</label>
+                  <input className="dash-form-input" type="number" value={form.display_order}
                     onChange={e => setForm(f => ({ ...f, display_order: e.target.value }))} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Profile Photo</label>
-                  <input className="form-input" type="file" accept="image/*"
+                  <label className="dash-form-label">Profile Photo</label>
+                  <input className="dash-form-input" type="file" accept="image/*"
                     onChange={e => setPhotoFile(e.target.files[0])} />
                   {modal !== 'add' && modal.photo && !photoFile && (
                     <div style={{ fontSize: '0.78rem', color: 'rgba(30,45,107,0.5)', marginTop: '0.3rem' }}>
@@ -213,7 +213,7 @@ export default function TeachersPage() {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-ghost" onClick={() => setModal(null)}>Cancel</button>
-                <button type="submit" className="btn btn-primary" disabled={saving}>
+                <button type="submit" className="btn dash-btn-primary" disabled={saving}>
                   {saving ? <><span className="spinner" style={{ borderTopColor: '#fff' }} /> Saving…</> : 'Save'}
                 </button>
               </div>

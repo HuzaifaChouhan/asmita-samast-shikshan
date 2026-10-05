@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -16,19 +16,24 @@ import NotFound from './pages/NotFound'
 import Teachers from './pages/Teachers'
 import Testimonials from './pages/Testimonials'
 
+// Admin dashboard (formerly a separate React app). Lazy-loaded so the public
+// site's bundle does not include any dashboard code.
+const DashboardApp = lazy(() => import('./dashboard/DashboardApp'))
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
+    // The dashboard never scrolled to top on navigation; keep it that way.
+    if (pathname.startsWith('/dashboard')) return
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname])
   return null
 }
 
-function AppContent() {
+function PublicSite() {
   const location = useLocation()
   return (
     <>
-      <ScrollToTop />
       <Navbar />
       <PageTransition key={location.pathname}>
         <Routes location={location}>
@@ -47,6 +52,27 @@ function AppContent() {
       </PageTransition>
       <Footer />
       <WhatsAppButton />
+    </>
+  )
+}
+
+function AppContent() {
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Dashboard: no public Navbar/Footer/WhatsApp button around it */}
+        <Route
+          path="/dashboard/*"
+          element={
+            <Suspense fallback={null}>
+              <DashboardApp />
+            </Suspense>
+          }
+        />
+        {/* Everything else is the public website, exactly as before */}
+        <Route path="*" element={<PublicSite />} />
+      </Routes>
     </>
   )
 }

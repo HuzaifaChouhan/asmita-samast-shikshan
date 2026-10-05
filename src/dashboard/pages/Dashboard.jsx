@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FileText, Users, Star, AlertCircle, Clock } from 'lucide-react'
+import { FileText, Users, Star, AlertCircle, Clock } from 'lucide-react-dashboard'
 import { statsApi, inquiriesApi } from '../api'
 
 function StatCard({ label, value, sub, icon: Icon, color }) {
@@ -17,7 +17,7 @@ function StatCard({ label, value, sub, icon: Icon, color }) {
 
 function statusBadge(status) {
   const map = { new: 'badge-new', contacted: 'badge-contacted', admitted: 'badge-admitted', closed: 'badge-closed' }
-  return <span className={`badge ${map[status] || 'badge-closed'}`}>{status}</span>
+  return <span className={`dash-badge ${map[status] || 'badge-closed'}`}>{status}</span>
 }
 
 function fmt(date) {

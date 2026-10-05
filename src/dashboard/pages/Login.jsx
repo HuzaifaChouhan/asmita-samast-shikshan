@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Lock } from 'lucide-react'
+import { Lock } from 'lucide-react-dashboard'
 
 export default function Login() {
   const { login } = useAuth()
@@ -16,7 +16,7 @@ export default function Login() {
     setLoading(true)
     try {
       await login(form.username, form.password)
-      navigate('/')
+      navigate('/dashboard')
     } catch (err) {
       setError(err.message || 'Login failed. Please try again.')
     } finally {
@@ -51,9 +51,9 @@ export default function Login() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="form-label">Username</label>
+            <label className="dash-form-label">Username</label>
             <input
-              className="form-input"
+              className="dash-form-input"
               type="text"
               placeholder="Enter username"
               value={form.username}
@@ -63,9 +63,9 @@ export default function Login() {
             />
           </div>
           <div className="form-group">
-            <label className="form-label">Password</label>
+            <label className="dash-form-label">Password</label>
             <input
-              className="form-input"
+              className="dash-form-input"
               type="password"
               placeholder="Enter password"
               value={form.password}
@@ -74,7 +74,7 @@ export default function Login() {
             />
           </div>
           <button
-            className="btn btn-primary"
+            className="btn dash-btn-primary"
             type="submit"
             disabled={loading}
             style={{ width: '100%', justifyContent: 'center', marginTop: '0.5rem', padding: '0.75rem' }}

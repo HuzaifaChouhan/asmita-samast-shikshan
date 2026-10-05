@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Search, Eye, Trash2, FileText, X, Plus } from 'lucide-react'
+import { Search, Eye, Trash2, FileText, X, Plus } from 'lucide-react-dashboard'
 import { inquiriesApi } from '../api'
 import ConfirmDialog from '../components/ConfirmDialog'
 import { toast } from '../components/Toast'
@@ -97,7 +97,7 @@ export default function InquiriesPage() {
               <option value="">All statuses</option>
               {STATUSES.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
             </select>
-            <button className="btn btn-primary" onClick={() => { setForm(EMPTY_FORM); setAddModal(true) }}>
+            <button className="btn dash-btn-primary" onClick={() => { setForm(EMPTY_FORM); setAddModal(true) }}>
               <Plus size={15} /> Add Inquiry
             </button>
           </div>
@@ -174,45 +174,45 @@ export default function InquiriesPage() {
               <div className="modal-body">
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="form-label">Parent / Guardian Name *</label>
-                    <input className="form-input" required value={form.full_name} onChange={set('full_name')} placeholder="Full name" />
+                    <label className="dash-form-label">Parent / Guardian Name *</label>
+                    <input className="dash-form-input" required value={form.full_name} onChange={set('full_name')} placeholder="Full name" />
                   </div>
                   <div className="form-group">
-                    <label className="form-label">Phone *</label>
-                    <input className="form-input" required value={form.phone} onChange={set('phone')} placeholder="Mobile number" />
+                    <label className="dash-form-label">Phone *</label>
+                    <input className="dash-form-input" required value={form.phone} onChange={set('phone')} placeholder="Mobile number" />
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Email</label>
-                  <input className="form-input" type="email" value={form.email} onChange={set('email')} placeholder="Email address" />
+                  <label className="dash-form-label">Email</label>
+                  <input className="dash-form-input" type="email" value={form.email} onChange={set('email')} placeholder="Email address" />
                 </div>
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="form-label">Student Name</label>
-                    <input className="form-input" value={form.student_name} onChange={set('student_name')} placeholder="Student's name" />
+                    <label className="dash-form-label">Student Name</label>
+                    <input className="dash-form-input" value={form.student_name} onChange={set('student_name')} placeholder="Student's name" />
                   </div>
                   <div className="form-group">
-                    <label className="form-label">Class Applying For</label>
-                    <select className="form-select" value={form.class_applying_for} onChange={set('class_applying_for')}>
+                    <label className="dash-form-label">Class Applying For</label>
+                    <select className="dash-form-select" value={form.class_applying_for} onChange={set('class_applying_for')}>
                       <option value="">Select class</option>
                       {CLASSES.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Status</label>
-                  <select className="form-select" value={form.status} onChange={set('status')}>
+                  <label className="dash-form-label">Status</label>
+                  <select className="dash-form-select" value={form.status} onChange={set('status')}>
                     {STATUSES.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
                   </select>
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Message / Notes</label>
+                  <label className="dash-form-label">Message / Notes</label>
                   <textarea className="form-textarea" value={form.message} onChange={set('message')} placeholder="Any additional notes…" />
                 </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-ghost" onClick={() => setAddModal(false)}>Cancel</button>
-                <button type="submit" className="btn btn-primary" disabled={saving}>
+                <button type="submit" className="btn dash-btn-primary" disabled={saving}>
                   {saving ? <><span className="spinner" style={{ borderTopColor: '#fff' }} /> Saving…</> : 'Add Inquiry'}
                 </button>
               </div>
@@ -236,12 +236,12 @@ export default function InquiriesPage() {
                 ['Phone', selected.phone],
                 ['Student Name', selected.student_name || '—'],
                 ['Class Applying For', selected.class_applying_for || '—'],
-                ['Status', <span className={`badge ${BADGE[selected.status]}`}>{selected.status}</span>],
+                ['Status', <span className={`dash-badge ${BADGE[selected.status]}`}>{selected.status}</span>],
                 ['Date', fmt(selected.created_at)],
                 ['Message', selected.message || '—'],
               ].map(([label, val]) => (
                 <div key={label}>
-                  <div className="form-label" style={{ marginBottom: '0.15rem' }}>{label}</div>
+                  <div className="dash-form-label" style={{ marginBottom: '0.15rem' }}>{label}</div>
                   <div style={{ fontSize: '0.875rem', color: '#1e2d6b' }}>{val}</div>
                 </div>
               ))}

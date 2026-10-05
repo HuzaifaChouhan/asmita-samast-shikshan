@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Plus, Search, Edit2, Trash2, Star, X } from 'lucide-react'
+import { Plus, Search, Edit2, Trash2, Star, X } from 'lucide-react-dashboard'
 import { testimonialsApi } from '../api'
 import ConfirmDialog from '../components/ConfirmDialog'
 import { toast } from '../components/Toast'
@@ -116,7 +116,7 @@ export default function TestimonialsPage() {
                 onChange={e => setSearch(e.target.value)}
               />
             </div>
-            <button className="btn btn-primary" onClick={openAdd}>
+            <button className="btn dash-btn-primary" onClick={openAdd}>
               <Plus size={15} /> Add
             </button>
           </div>
@@ -187,23 +187,23 @@ export default function TestimonialsPage() {
             <form onSubmit={handleSave}>
               <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
                 <div className="form-group">
-                  <label className="form-label">Name *</label>
-                  <input className="form-input" required value={form.name}
+                  <label className="dash-form-label">Name *</label>
+                  <input className="dash-form-input" required value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Role *</label>
-                  <input className="form-input" required value={form.role}
+                  <label className="dash-form-label">Role *</label>
+                  <input className="dash-form-input" required value={form.role}
                     onChange={e => setForm(f => ({ ...f, role: e.target.value }))} placeholder="e.g. Parent, Student, Alumni" />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Message *</label>
+                  <label className="dash-form-label">Message *</label>
                   <textarea className="form-textarea" required value={form.message}
                     onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Rating (1–5)</label>
-                  <select className="form-select" value={form.rating}
+                  <label className="dash-form-label">Rating (1–5)</label>
+                  <select className="dash-form-select" value={form.rating}
                     onChange={e => setForm(f => ({ ...f, rating: e.target.value }))}>
                     <option value="">No rating</option>
                     {[1,2,3,4,5].map(n => <option key={n} value={n}>{n} ★</option>)}
@@ -211,8 +211,8 @@ export default function TestimonialsPage() {
                 </div>
                 {modal === 'add' && (
                   <div className="form-group">
-                    <label className="form-label">Photo</label>
-                    <input className="form-input" type="file" accept="image/*"
+                    <label className="dash-form-label">Photo</label>
+                    <input className="dash-form-input" type="file" accept="image/*"
                       onChange={e => setPhotoFile(e.target.files[0])} />
                   </div>
                 )}
@@ -233,7 +233,7 @@ export default function TestimonialsPage() {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-ghost" onClick={() => setModal(null)}>Cancel</button>
-                <button type="submit" className="btn btn-primary" disabled={saving}>
+                <button type="submit" className="btn dash-btn-primary" disabled={saving}>
                   {saving ? <><span className="spinner" style={{ borderTopColor: '#fff' }} /> Saving…</> : 'Save'}
                 </button>
               </div>

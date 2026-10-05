@@ -3,6 +3,9 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    // The dashboard uses its own plain CSS (src/dashboard/dashboard.css), not Tailwind utilities.
+    // Excluding it stops Tailwind generating stray global utilities from its class names.
+    "!./src/dashboard/**",
   ],
   theme: {
     extend: {

@@ -20,7 +20,7 @@ async function request(method, path, data = null, isFormData = false) {
   if (res.status === 401) {
     localStorage.removeItem('admin_token')
     localStorage.removeItem('admin_user')
-    window.location.href = '/login'
+    window.location.href = '/dashboard/login'
     throw new Error('Session expired. Please log in again.')
   }
 

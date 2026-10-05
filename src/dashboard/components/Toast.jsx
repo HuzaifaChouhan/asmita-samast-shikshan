@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CheckCircle, XCircle } from 'lucide-react-dashboard'
 
 let toastId = 0
 let addToastExternal = null

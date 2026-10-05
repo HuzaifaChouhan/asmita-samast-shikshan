@@ -1,12 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, FileText, Users, Star, LogOut, Menu, X } from 'lucide-react'
+import { LayoutDashboard, FileText, Users, Star, LogOut, Menu, X } from 'lucide-react-dashboard'
 import { useAuth } from '../context/AuthContext'
 
 const navItems = [
-  { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/inquiries', label: 'Inquiries', icon: FileText },
-  { to: '/teachers', label: 'Teachers', icon: Users },
-  { to: '/testimonials', label: 'Testimonials', icon: Star },
+  { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { to: '/dashboard/inquiries', label: 'Inquiries', icon: FileText },
+  { to: '/dashboard/teachers', label: 'Teachers', icon: Users },
+  { to: '/dashboard/testimonials', label: 'Testimonials', icon: Star },
 ]
 
 export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
@@ -15,7 +15,7 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
 
   async function handleLogout() {
     await logout()
-    navigate('/login')
+    navigate('/dashboard/login')
   }
 
   return (
@@ -42,7 +42,7 @@ export default function Layout({ children, title, mobileOpen, setMobileOpen }) {
             <NavLink
               key={to}
               to={to}
-              end={to === '/'}
+              end={to === '/dashboard'}
               className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
               onClick={() => setMobileOpen(false)}
             >
